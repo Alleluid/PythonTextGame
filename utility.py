@@ -2,6 +2,11 @@ import os
 import random
 from string import Formatter
 
+from types import SimpleNamespace
+
+# DEBUG
+_debug_player = SimpleNamespace(name="DEBUG PLAYER")
+
 
 def get_rand_name(count=1):
     with open(os.path.abspath("resources/names.txt"), encoding='utf-8') as f:
