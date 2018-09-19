@@ -7,5 +7,11 @@
     "{random.location!f},",
     "{random.location!f},",
     "and {random.location!f}!"
-  ]
+  ],
+  "invalid": ["Invalid Input. #TODO make this more verbose"],
+  "encounter": [
+    "A wild beast named {random.name!f} attacks you {player.name}!",
+    "What will you do?"
+  ],
+  "movement": ["{player.name} moves towards the {direction}"]
 }
