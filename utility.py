@@ -1,5 +1,6 @@
 import os
 import random
+from string import Formatter
 
 
 def get_rand_name(count=1):
@@ -9,6 +10,14 @@ def get_rand_name(count=1):
         return random.choice(names).strip()
     else:
         return [get_rand_name() for _ in range(count)]
+
+
+class FuncFormat(Formatter):
+    def convert_field(self, value, conversion):
+        if conversion == 'f':
+            return value()
+        else:
+            return super().convert_field(value, conversion)
 
 
 if __name__ == '__main__':
