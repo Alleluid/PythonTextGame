@@ -2,16 +2,10 @@ from __future__ import annotations
 
 from functools import partial
 
-import text_templates as tt
+import format_templates as ft
+import utility
 
-
-# class CmdMeta(type):
-#
-#
-#     def __new__(mcs, templates, *args, **kwargs):
-#         return super().__new__(templates, *args, **kwargs)
-
-temps = tt.Templates(player_name="TEST NAME")
+ff = ft.FuncFormat()
 
 
 class Command:
@@ -34,10 +28,9 @@ class MoveCommand(Command):
 
         for keywords, value in directions.items():
             if self.user_input[1] in keywords:
-                # temps.movement.template_print(direction=value)
-                tt.Templates(player_name="TEST NAME").movement.template_print(direction=value)
+                ft.func_format_print(ff, 'movement', player=utility._debug_player, direction=value)
                 return
-        temps.invalid.template_print()
+        print(ft.temps['invalid'])
 
 
 class Commands:
