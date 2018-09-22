@@ -21,22 +21,11 @@ class Loc:
 
 
 class Locations:
-    _locs = [
-        Loc("plains", "the plains"),
-        Loc("forest", "the forest"),
-        Loc("tundra", "the tundra"),
-
-        Loc("city_of", "the city of {name}"),
-        Loc("city", "{name} City"),
-        Loc("lake", "lake {name}"),
-        Loc("valley", "{name} valley"),
-        Loc("river", "{name} river"),
-        Loc("cave_of", "the cave of {name}"),
-        Loc("cave", "cave {name}"),
-    ]
-
-    def __init__(self):
-        pass
+    def __init__(self, generate=True):
+        self._locs = []
+        if generate:
+            for i in range(10):
+                self.add_rand_loc()
 
     def __getattr__(self, item):
         """Gets Loc obj from _locs list if available"""
@@ -45,9 +34,27 @@ class Locations:
                 return loc
         raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{item}'")
 
-    def rand(self) -> Loc:
+    def add_loc(self, name, desc):
+        self._locs.append(Loc(name, desc))
+
+    def add_rand_loc(self) -> Loc:
+        templates = {
+            "city_of": "the City of {name}",
+            "cave": "cave {name}",
+            "valley": "{name} Valley",
+            "village": "{name} Village",
+            "town": "{name}town",
+            "river": "{name} river",
+            "lake": "{name} lake",
+        }
+        rand_name, rand_desc = random.choice(list(templates.items()))
+        loc = Loc(rand_name, rand_desc)
+        self._locs.append(loc)
+        return loc
+
+    def get_rand(self) -> Loc:
         """ Returns random Loc obj from _locs list"""
         return random.choice(self._locs)
 
-    def rand_str(self) -> str:
-        return self.rand().desc
+    def get_rand_str(self) -> str:
+        return self.get_rand().desc
