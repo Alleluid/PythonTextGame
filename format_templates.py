@@ -1,18 +1,29 @@
 import json
 import os
 import random
+from string import Formatter
 from types import SimpleNamespace
 
-from utility import FuncFormat, get_rand_name
+from utility import get_rand_name
 
 with open(os.path.abspath("resources/templates.json"), encoding='utf-8') as f:
     # Strings are broken up by line to be more readable in JSON, this joins them with newlines.
     temps = {key: '\n'.join(str_list) for key, str_list in json.load(f).items()}
 
 
-def func_format_print(ff: FuncFormat, string_key, **kwargs):
-    string = temps[string_key]
-    print(ff.format(string, **kwargs))
+class FuncFormat(Formatter):
+    def convert_field(self, value, conversion):
+        if conversion == 'f':
+            try:
+                return value(value)
+            except TypeError:
+                return value()
+        else:
+            return super().convert_field(value, conversion)
+
+    def func_format_print(self, string_key, **kwargs):
+        string = temps[string_key]
+        print(self.format(string, **kwargs))
 
 
 class Random:

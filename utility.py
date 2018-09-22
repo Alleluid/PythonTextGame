@@ -17,15 +17,6 @@ def get_rand_name(count=1):
         return [get_rand_name() for _ in range(count)]
 
 
-class FuncFormat(Formatter):
-    def convert_field(self, value, conversion):
-        if conversion == 'f':
-            try:
-                return value(value)
-            except TypeError:
-                return value()
-        else:
-            return super().convert_field(value, conversion)
 
 
 if __name__ == '__main__':
