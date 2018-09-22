@@ -23,7 +23,6 @@ class Player(GameActor):
     def __init__(self):
         super().__init__(value=0, max_health=100)
         self.name = input("Name> ")
-        self.turns = []
 
 
 class GameSession:
@@ -34,7 +33,8 @@ class GameSession:
 
 def game_main():
     locations = Locations()
-    session = GameSession()
+    # TODO: load session data
+    session = GameSession()  # Will ask for input for name if no save data
     ff = ft.FuncFormat()
 
     ft.func_format_print(ff, 'welcome',
