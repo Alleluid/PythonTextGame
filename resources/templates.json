@@ -10,7 +10,7 @@
   ],
   "invalid": ["Invalid Input. #TODO make this more verbose"],
   "encounter": [
-    "A wild beast named {random.name!f} attacks you {player.name}!",
+    "A wild beast {random.enemy!f} attacks you {player.name}!",
     "What will you do?"
   ],
   "movement": ["{player.name} moves towards the {direction}"]
