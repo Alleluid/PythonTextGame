@@ -5,6 +5,7 @@ from string import Formatter
 from types import SimpleNamespace
 
 from utility import get_rand_name
+from game_classes.base import Consts
 from locations import Loc, Locations
 
 with open(os.path.abspath("resources/templates.json"), encoding='utf-8') as f:
@@ -28,16 +29,6 @@ class FuncFormat(Formatter):
 
 
 class Random:
-    locations = Locations()
-
-    @classmethod
-    def location(cls):
-        return random.choice((
-            f"Lake {get_rand_name()}",
-            f"City of {get_rand_name()}",
-            f"{get_rand_name()} City",
-            f"Great {get_rand_name()} Mountains",
-        ))
 
     @staticmethod
     def name():
