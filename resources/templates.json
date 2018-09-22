@@ -1,6 +1,6 @@
 {
   "welcome": [
-    "Welcome to the world of {random.name!f}!",
+    "Welcome to the world of {world}!",
     "Here you, {player.name}, will experience some stuff I guess!",
     "Explore wonderous locations such as: ",
     "{random.location!f},",
