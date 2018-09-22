@@ -7,7 +7,8 @@ from game_classes.base import GameObject, GameActor, GameActorNPC, GameItem, Gam
 import utility
 
 from locations import Loc, Locations
-import text_templates as tt
+import format_templates as ft
+import typing
 
 
 class GameTurn:
@@ -25,19 +26,27 @@ class Player(GameActor):
         self.turns = []
 
 
+class GameSession:
+    def __init__(self):
+        self.turns = []  # type:typing.List[GameTurn]
+        self.player = Player()
+
+
 def game_main():
     locations = Locations()
-    player = Player()
-    temps = tt.Templates(player_name=player.name)
+    session = GameSession()
+    ff = ft.FuncFormat()
 
-    temps.welcome.template_print(
+    ft.func_format_print(ff, 'welcome',
+        player=session.player,
         rand_name=utility.get_rand_name,
         rand_location=locations.rand_str
     )
 
     beast = GameActorNPC.from_enum(Consts.Enemies.MID_LVL)
 
-    temps.encounter.template_print(
+    ft.func_format_print(ff, 'encounter',
+        player=session.player,
         rand_name=utility.get_rand_name,
     )
 
