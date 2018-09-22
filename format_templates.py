@@ -21,7 +21,7 @@ class FuncFormat(Formatter):
         else:
             return super().convert_field(value, conversion)
 
-    def func_format_print(self, string_key, **kwargs):
+    def display(self, string_key, **kwargs):
         string = temps[string_key]
         print(self.format(string, **kwargs))
 
