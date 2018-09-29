@@ -13,5 +13,7 @@
     "A wild beast {random.enemy!f} attacks you {player.name}!",
     "What will you do?"
   ],
-  "movement": ["{player.name} moves towards the {direction}"]
+  "movement": ["{player.name} moves towards the {direction}."],
+  "wait": ["{player.name} waited for something to happen."],
+  "look": ["{player.name} looks around and finds \n{found}"]
 }
