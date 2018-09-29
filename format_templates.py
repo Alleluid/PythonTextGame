@@ -14,6 +14,10 @@ with open(os.path.abspath("resources/templates.json"), encoding='utf-8') as f:
 
 
 class FuncFormat(Formatter):
+
+    def __init__(self, player):
+        self.player = player
+
     def convert_field(self, value, conversion):
         if conversion == 'f':
             try:
@@ -25,7 +29,7 @@ class FuncFormat(Formatter):
 
     def display(self, string_key, **kwargs):
         string = temps[string_key]
-        print(self.format(string, **kwargs))
+        print(self.format(string, player=self.player, **kwargs))
 
 
 class Random:

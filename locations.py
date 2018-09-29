@@ -24,7 +24,7 @@ class Locations:
     def __init__(self, generate=True):
         self._locs = []
         if generate:
-            for i in range(10):
+            for i in range(20):
                 self.add_rand_loc()
 
     def __getattr__(self, item):

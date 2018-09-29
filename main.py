@@ -7,6 +7,7 @@ import types
 
 from game_classes.base import GameObject, GameActor, GameActorNPC, GameItem, GameStructure, Consts
 from locations import Loc, Locations
+from commands import CMDInput
 import format_templates as ft
 import utility
 
@@ -15,8 +16,8 @@ class GameTurn:
     class Enum(Enum):
         MOVE = auto
 
-    def __init__(self, session: GameSession):
-        self.session = session
+    def __init__(self, controller: GameController):
+        self.controller = controller
         self.command = input("> ")
         self.events = []
 
@@ -30,7 +31,7 @@ class Player(GameActor):
         self.name = input("Name> ")
 
 
-class GameSession:
+class GameController:
     def __init__(self):
         self.turns = []  # type:typing.List[GameTurn]
         self.player = Player()
@@ -64,13 +65,12 @@ class GameSession:
 
 
 def game_main():
-    # TODO: load session data
-    session = GameSession()  # Will ask for input for name if no save data
-    session.display_welcome()
+    # TODO: load controller data
+    controller = GameController()  # Will ask for input for name if no save data
+    cmd_input = CMDInput()
+    controller.display_welcome()
 
     beast = GameActorNPC.from_enum(Consts.Enemies.MID_LVL)
-
-
 
 
 if __name__ == "__main__":
