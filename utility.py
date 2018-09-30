@@ -1,3 +1,4 @@
+import json
 import os
 import random
 from string import Formatter
@@ -6,6 +7,11 @@ from types import SimpleNamespace
 
 # DEBUG
 _debug_player = SimpleNamespace(name="DEBUG PLAYER")
+
+
+def load_json_template(file_name):
+    with open(os.path.abspath(f"resources/{file_name}")) as f:
+        return json.load(f)
 
 
 def get_rand_name(count=1):
