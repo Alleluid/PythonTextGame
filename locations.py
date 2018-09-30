@@ -50,7 +50,7 @@ class Locations:
         self.locs.append(Loc(name, desc))
 
     def add_rand_loc(self) -> Loc:
-        templates = json.load(os.path.abspath("resources/location_templates.json"))
+        templates = utility.load_json_template("location_templates")
         rand_name, rand_desc = random.choice(list(templates.items()))
         loc = Loc(rand_name, rand_desc)
         self.locs.append(loc)
