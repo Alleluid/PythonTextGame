@@ -1,3 +1,5 @@
+import json
+import os
 import random
 import utility
 
@@ -48,15 +50,7 @@ class Locations:
         self.locs.append(Loc(name, desc))
 
     def add_rand_loc(self) -> Loc:
-        templates = {
-            "city_of": "the City of {name}",
-            "cave": "cave {name}",
-            "valley": "{name} Valley",
-            "village": "{name} Village",
-            "town": "{name}town",
-            "river": "{name} river",
-            "lake": "{name} lake",
-        }
+        templates = json.load(os.path.abspath("resources/location_templates.json"))
         rand_name, rand_desc = random.choice(list(templates.items()))
         loc = Loc(rand_name, rand_desc)
         self.locs.append(loc)

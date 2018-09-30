@@ -1,0 +1,9 @@
+{
+    "city_of": "the City of {name}",
+    "cave": "cave {name}",
+    "valley": "{name} Valley",
+    "village": "{name} Village",
+    "town": "{name}town",
+    "river": "{name} river",
+    "lake": "{name} lake"
+}
