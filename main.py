@@ -36,7 +36,7 @@ class GameController:
         self.turns = []  # type:typing.List[GameTurn]
         self.player = Player()
         self.locations = Locations()
-        self.func_format = ft.FuncFormat()
+        self.func_format = ft.FuncFormat(self.player)
         self.random = self._init_random_ns()
 
         self.world = utility.get_rand_name()
@@ -67,7 +67,7 @@ class GameController:
 def game_main():
     # TODO: load controller data
     controller = GameController()  # Will ask for input for name if no save data
-    cmd_input = CMDInput()
+    cmd_input = CMDInput(controller.player)
     controller.display_welcome()
 
     beast = GameActorNPC.from_enum(Consts.Enemies.MID_LVL)

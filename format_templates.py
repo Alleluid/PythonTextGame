@@ -29,7 +29,7 @@ class FuncFormat(Formatter):
 
     def display(self, string_key, **kwargs):
         string = temps[string_key]
-        print(self.format(string, player=self.player, **kwargs))
+        print(self.format(string, **kwargs))
 
 
 class Random:
