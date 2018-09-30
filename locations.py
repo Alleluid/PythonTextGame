@@ -3,6 +3,12 @@ import utility
 
 
 class Loc:
+    """
+    Object to store a game location.
+
+    Usually randomly generated from name list. Can be gotten directly by name.
+
+    """
     def __init__(self, name, desc):
         self.name = name
         self.raw_desc = desc
@@ -10,7 +16,9 @@ class Loc:
         self.gen_names()
 
     def gen_names(self):
-        """Generates names to access later during gameplay"""
+        """
+        Generates names to access later during gameplay.
+        """
         self.desc = self.raw_desc.format(name=utility.get_rand_name())
 
     def __str__(self):
@@ -22,20 +30,22 @@ class Loc:
 
 class Locations:
     def __init__(self, generate=True):
-        self._locs = []
+        self.locs = []
         if generate:
             for i in range(20):
                 self.add_rand_loc()
 
     def __getattr__(self, item):
-        """Gets Loc obj from _locs list if available"""
-        for loc in self._locs:
+        """
+        Gets Loc obj from locs list if available
+        """
+        for loc in self.locs:
             if loc.name == item:
                 return loc
         raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{item}'")
 
     def add_loc(self, name, desc):
-        self._locs.append(Loc(name, desc))
+        self.locs.append(Loc(name, desc))
 
     def add_rand_loc(self) -> Loc:
         templates = {
@@ -49,12 +59,14 @@ class Locations:
         }
         rand_name, rand_desc = random.choice(list(templates.items()))
         loc = Loc(rand_name, rand_desc)
-        self._locs.append(loc)
+        self.locs.append(loc)
         return loc
 
     def get_rand(self) -> Loc:
-        """ Returns random Loc obj from _locs list"""
-        return random.choice(self._locs)
+        """
+        Returns random Loc obj from locs list
+        """
+        return random.choice(self.locs)
 
     def get_rand_str(self) -> str:
         return self.get_rand().desc
