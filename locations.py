@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import os
 import random
@@ -19,7 +21,7 @@ class Loc:
 
     def gen_names(self):
         """
-        Generates names to access later during gameplay.
+        Generates names to fill placeholders.
         """
         self.desc = self.raw_desc.format(name=utility.get_rand_name())
 
@@ -34,8 +36,7 @@ class Locations:
     def __init__(self, generate=True):
         self.locs = []
         if generate:
-            for i in range(20):
-                self.add_rand_loc()
+            self.add_rand_locs()
 
     def __getattr__(self, item):
         """
@@ -49,12 +50,12 @@ class Locations:
     def add_loc(self, name, desc):
         self.locs.append(Loc(name, desc))
 
-    def add_rand_loc(self) -> Loc:
+    def add_rand_locs(self):
         templates = utility.load_json_template("location_templates.json")
-        rand_name, rand_desc = random.choice(list(templates.items()))
-        loc = Loc(rand_name, rand_desc)
-        self.locs.append(loc)
-        return loc
+        for _ in range(len(templates) * 2):
+            rand_name, rand_desc = random.choice(list(templates.items()))
+            loc = Loc(rand_name, rand_desc)
+            self.locs.append(loc)
 
     def get_rand(self) -> Loc:
         """
