@@ -1,7 +1,7 @@
 {
   "city": "{name} City",
   "city_of": "the City of {name}",
-  "cave": "cave {name}",
+  "cave": "Cave {name}",
   "cave_of": "the Cave of {name}",
   "valley": "{name} Valley",
   "village": "{name} Village",

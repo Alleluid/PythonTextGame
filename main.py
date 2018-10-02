@@ -38,6 +38,7 @@ class GameController:
         self.locations = Locations()
         self.func_format = ft.FuncFormat(self.player)
         self.random = self._init_random_ns()
+        # `random` namespace used by template system.
 
         self.world = utility.get_rand_name()
 
